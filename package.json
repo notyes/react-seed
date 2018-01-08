@@ -4,7 +4,10 @@
   "description": "A development environment for starting up a react project.",
   "main": "index.js",
   "scripts": {
-    "api": "json-server ./api/db.json --port 4000 --delay 500"
+    "start": "nodemon index.js",
+    "dev": "webpack --watch",
+    "api": "json-server ./api/db.json --port 4000 --delay 500",
+    "graphql": "nodemon ./graphql/server.js --exec babel-node -e js"
   },
   "repository": {
     "type": "git",
