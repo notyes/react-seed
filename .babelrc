@@ -7,7 +7,8 @@
                 "browsers": ["last 2 versions", "safari >= 7"]
             }
         }],
-        "react"
+        "react",
+        ["next/babel", "env"]
     ],
     "plugins": [
         "transform-runtime",
