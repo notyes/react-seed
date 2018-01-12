@@ -61,6 +61,7 @@
     "graphql-tools": "^2.13.0",
     "react-apollo": "^2.0.4",
     "moment": "^2.20.1",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "recompose": "^0.26.0"
   }
 }

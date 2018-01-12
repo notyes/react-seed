@@ -7,22 +7,23 @@ import { compose } from 'recompose'
 
 import Item from '../src/components/itemList'
 
-function HomePage({ data }) {
-  const { MenusList, loading } = data
-
+function CategoryPage({ data }) {
+  const { Category, loading } = data
+  console.log(data)
   if (loading == true) {
     return null
   }
+
   return (
     <div className="bottom_container">
       <div id="container2">
         <div className="welCome">
-          <h2>WELCOME TO OUR FOOD </h2>
+          <h2>{Category.name} </h2>
         </div>
         {/* column */}
         <div className="welCome">
           <div id="columZone">
-            {MenusList.map(function(item) {
+            {Category.menus.map(function(item) {
               return <Item dataItem={item} key={item.id} />
             })}
             <div className="clear" />
@@ -37,17 +38,29 @@ function HomePage({ data }) {
   )
 }
 const QUERY_POSTS = gql`
-  query {
-    MenusList {
-      name
-      price
-      images
+  query($cat_id: Int!) {
+    Category(cat_id: $cat_id) {
       id
-      avgRating
+      name
+      menus {
+        name
+        price
+        images
+        id
+        avgRating
+      }
     }
   }
 `
 
-export default compose(withApolloClient, withLayout, graphql(QUERY_POSTS))(
-  HomePage
-)
+export default compose(
+  withApolloClient,
+  withLayout,
+  graphql(QUERY_POSTS, {
+    options: ({ url: { query: { id } } }) => ({
+      variables: {
+        cat_id: id
+      }
+    })
+  })
+)(CategoryPage)

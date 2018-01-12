@@ -1,34 +1,18 @@
 import React from 'react'
 import MainLayout from '../src/components/layouts/MainLayout'
-import fetchGQL from '../utils/fetchGQL'
 
 export default WrappedComponent =>
   class WithLayout extends React.Component {
-    static async getInitialProps(context) {
+    static async getInitialProps(ctx) {
       let composedInitialProps = {}
       if (WrappedComponent.getInitialProps) {
-        composedInitialProps = await WrappedComponent.getInitialProps(context)
+        composedInitialProps = await WrappedComponent.getInitialProps(ctx)
       }
-      let query = `query{
-        CategoryList {
-          id
-          name
-        }
-      }`
-      const categories = await fetchGQL(query)
-
-      return {
-        categories,
-        ...composedInitialProps
-      }
-    }
-    constructor(props) {
-      super(props)
-      this.categories = this.props.categories.data
+      return composedInitialProps
     }
     render() {
       return (
-        <MainLayout categories={this.categories}>
+        <MainLayout>
           <WrappedComponent {...this.props} />
         </MainLayout>
       )

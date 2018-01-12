@@ -2,20 +2,16 @@ import React from 'react'
 import styles from './styles'
 import Header from './Header'
 
-function Layout({ children, categories }) {
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+
+function Layout({ children, data }) {
+  const { CategoryList } = data
   return (
     <div className="wrapper">
-      <Header categories={categories} />
+      <Header categories={CategoryList} />
       <main>{children}</main>
-      {/* <style jsx global>{`
-        .wrapper {
-          max-width: 1024px;
-          margin: 0 auto;
-        }
-        main {
-          margin-top: 50px;
-        }
-      `}</style> */}
+
       <style jsx global>
         {styles}
       </style>
@@ -23,4 +19,13 @@ function Layout({ children, categories }) {
   )
 }
 
-export default Layout
+const QUERY_POSTS = gql`
+  query {
+    CategoryList {
+      id
+      name
+    }
+  }
+`
+export default graphql(QUERY_POSTS)(Layout)
+// export default Layout
