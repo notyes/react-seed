@@ -6,7 +6,10 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 function Layout({ children, data }) {
-  const { CategoryList } = data
+  const { CategoryList, loading } = data
+  if (loading) {
+    return null
+  }
   return (
     <div className="wrapper">
       <Header categories={CategoryList} />

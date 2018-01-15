@@ -264,6 +264,15 @@ export default css`
     width: 192px;
     padding: 0 0 0 60px;
   }
+  .welCometextBox2 ul {
+    margin: 10px 0px 0px 20px;
+    padding-top: 10px;
+    position: absolute;
+  }
+  .welCometextBox2 li {
+    margin-top: 5px;
+    line-height: 2em;
+  }
   .welCometextBox2 h2 {
     float: left;
     width: 170px;
@@ -403,12 +412,13 @@ export default css`
   .aboutcolumn1 {
     width: 48%;
     float: left;
-    margin: 0px 0px 10px 0px;
+    margin: 10px 0px 10px 10px;
   }
   .aboutcolumn2 {
-    width: 48%;
+    width: 45%;
     float: right;
-    margin: 0px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+    padding-right: 15px;
   }
   .abouticon {
     float: left;
@@ -516,6 +526,9 @@ export default css`
     left: 0;
     width: 50%;
     overflow: hidden;
+  }
+  .Commentslist {
+    margin-top: 70px;
   }
   @-moz-document url-prefix() {
     /* Firefox Hack :( */

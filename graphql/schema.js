@@ -3,11 +3,10 @@ import 'isomorphic-fetch'
 
 const typeDefs = `
   type Query {
-    posts(first : Int = 5) : [PostType]
-    post(id: Int) : PostType
     CategoryList : [CategoryType]
     MenusList : [MenuType]
     Category(cat_id : Int) : CategoryType
+    MenuDetail(menu_id : Int) : MenuType
   }
   type CategoryType{
     id : Int
@@ -23,6 +22,7 @@ const typeDefs = `
     price : Int
     rating : RateType
     avgRating : String
+    comments : [CommentType]
   }
   type RateType{
     one : Int
@@ -31,42 +31,15 @@ const typeDefs = `
     four : Int
     five : Int
   }
-  type PostType {
+  type CommentType{
     id : Int
-    title : String
     body : String
-    author : AuthorType
-    tags : [String]
-    date : String
-  }
-  type AuthorType{
-    name : String
-    avatar : String
-  }
-  type Mutation { 
-    addPost(title: String!, body: String! ): PostType
   }
 `
 
 const resolvers = {
   Query: {
-    // posts: async (_, { first }) => {
-    //   const res = await fetch('http://localhost:4000/posts')
-    //   const json = await res.json()
-
-    //   return json.slice(0, first).map(function(post) {
-    //     post.date = modifyDate(post.pubDate)
-    //     return post
-    //   })
-    // },
-    // post: async (_, { id }) => {
-    //   const res = await fetch('http://localhost:4000/posts/' + id)
-    //   const json = await res.json()
-
-    //   json.date = modifyDate(json.pubDate)
-    //   return json
-    // },
-    CategoryList: async (_, {}) => {
+    CategoryList: async _ => {
       const res = await fetch('http://localhost:4000/categories/?_embed=menus')
       const json = await res.json()
       return json
@@ -83,7 +56,7 @@ const resolvers = {
       })
       return json
     },
-    MenusList: async (_, {}) => {
+    MenusList: async _ => {
       const url_fetch = 'http://localhost:4000/menus?_expand=category'
 
       const res = await fetch(url_fetch)
@@ -93,6 +66,21 @@ const resolvers = {
         item.avgRating = avgRating(item.rating)
         return item
       })
+    },
+    MenuDetail: async (_, { menu_id }) => {
+      if (menu_id == undefined) {
+        return false
+      }
+      const url =
+        'http://localhost:4000/menus/' +
+        menu_id +
+        '?_expand=category&_embed=comments'
+      const res = await fetch(url)
+      const json = await res.json()
+
+      json.avgRating = avgRating(json.rating)
+
+      return json
     }
   }
   // Mutation: {
