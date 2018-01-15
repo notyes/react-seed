@@ -189,7 +189,7 @@ export default css`
   .columnText {
     text-align: left;
 
-    padding: 10px 0px 0px 46px;
+    padding: 10px 0px 0px 30px;
   }
   .columnText1 {
     text-align: left;
@@ -541,6 +541,12 @@ export default css`
   }
   .Pricedetail span {
     color: #e93b0c;
+  }
+  .underlineMenu {
+    text-decoration: underline;
+  }
+  .itemHead {
+    cursor: pointer;
   }
   @-moz-document url-prefix() {
     /* Firefox Hack :( */

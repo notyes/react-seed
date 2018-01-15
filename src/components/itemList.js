@@ -7,7 +7,9 @@ export default function Item({ dataItem }) {
   return (
     <div className="column1">
       <Link route="detail" params={{ id: id }}>
-        <h3>{name}</h3>
+        <h3 className="itemHead">
+          <a>{name}</a>
+        </h3>
       </Link>
       <img className="imgItem" src={`/static/images/menus/${images}`} alt="" />
       <div className="columnText">

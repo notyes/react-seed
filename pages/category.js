@@ -9,7 +9,7 @@ import Item from '../src/components/itemList'
 
 function CategoryPage({ data }) {
   const { Category, loading } = data
-  console.log(data)
+
   if (loading == true) {
     return null
   }
