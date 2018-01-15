@@ -5,6 +5,7 @@ import { compose } from 'recompose'
 import withApolloClient from '../hocs/withApolloClient'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import RatingStar from '../src/components/starRating'
 
 function DetailPage({ data }) {
   const { MenuDetail, loading } = data
@@ -53,7 +54,11 @@ function DetailPage({ data }) {
                   <a href="#">.....</a>
                 </div>
                 <div>
-                  <span>Price : {price}</span>
+                  <RatingStar avgRating={avgRating} />
+                </div>
+                <br />
+                <div className="Pricedetail">
+                  Price :<span> THB {price}</span>
                 </div>
               </div>
             </div>
@@ -113,4 +118,3 @@ export default compose(
     })
   })
 )(DetailPage)
-// export default compose(withApolloClient, withLayout)(DetailPage)

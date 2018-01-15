@@ -414,6 +414,9 @@ export default css`
     float: left;
     margin: 10px 0px 10px 10px;
   }
+  .aboutcolumn1 img {
+    max-width: 320px;
+  }
   .aboutcolumn2 {
     width: 45%;
     float: right;
@@ -529,6 +532,15 @@ export default css`
   }
   .Commentslist {
     margin-top: 70px;
+  }
+  .Pricedetail {
+    width: 226px;
+    padding: 10px 0px 0px 0px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .Pricedetail span {
+    color: #e93b0c;
   }
   @-moz-document url-prefix() {
     /* Firefox Hack :( */
