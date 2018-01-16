@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from '../../../src/routes'
 
 export default function Header({ categories }) {
+  if (categories == undefined) return null
   return (
     <div id="header">
       <div id="logo">

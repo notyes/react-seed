@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from '../routes'
 import RatingStar from './starRating'
 
-export default function Item({ dataItem }) {
+export default function Item({ dataItem, addOrder }) {
   const { id, name, price, images, avgRating } = dataItem
   return (
     <div className="column1">
@@ -19,7 +19,10 @@ export default function Item({ dataItem }) {
       <div className="columnLink">
         THB {price}
         <span className="order">
-          | <a href="#">Order Now</a>
+          |{' '}
+          <a onClick={addOrder(id)} href="javascript:void(0)">
+            Order Now
+          </a>
         </span>
       </div>
     </div>

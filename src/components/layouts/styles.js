@@ -174,7 +174,7 @@ export default css`
     padding: 0px 0px 20px 0px;
   }
   #container2 {
-    width: 650px;
+    width: 700px;
     padding: 40px 0px 40px 0px;
     float: left;
   }
@@ -185,6 +185,13 @@ export default css`
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 5px;
     text-align: center;
+  }
+  .ordercolumn1 {
+    width: 230px;
+    float: left;
+
+    padding: 0px 10px 0px 0px;
+    margin: 0px 0px 0px 5px;
   }
   .columnText {
     text-align: left;
@@ -209,6 +216,7 @@ export default css`
     font-size: 12px;
     color: #000;
     padding: 0px 0px 0px 10px;
+    width: 250px;
   }
   .order a {
     color: #000000;
@@ -261,27 +269,18 @@ export default css`
   }
   .welCometextBox2 {
     float: left;
-    width: 192px;
-    padding: 0 0 0 60px;
+    width: 250px;
+    padding: 40px 0px 40px 2px;
   }
   .welCometextBox2 ul {
-    margin: 10px 0px 0px 20px;
-    padding-top: 10px;
-    position: absolute;
+    // margin: 10px 0px 0px 20px;
+    // padding-top: 10px;
+    // position: absolute;
+    padding: 10px 0px 0px 25px;
   }
   .welCometextBox2 li {
     margin-top: 5px;
     line-height: 2em;
-  }
-  .welCometextBox2 h2 {
-    float: left;
-    width: 170px;
-    height: 25px;
-    font: 18px/20px Gill Sans Condensed, Myriad Pro, Arial, Helvetica,
-      sans-serif;
-    color: #000;
-
-    padding: 54px 0 0 22px;
   }
   .welCometextBox2 .news {
     float: left;
@@ -317,7 +316,23 @@ export default css`
   .welCometextBox2 .more a:hover {
     text-decoration: underline;
   }
-
+  .orderList {
+    width: 250px;
+    float: left;
+    background: #4564a7;
+  }
+  .orderList h2 {
+    margin: 0px;
+    padding: 10px 0px 0px 47px;
+    color: #ffffff;
+    font-weight: 200;
+    font: 25px Gill Sans Condensed, Myriad Pro, Arial, Helvetica, sans-serif;
+  }
+  .orderZone {
+    width: 250px;
+    background: #eeeff3 left bottom no-repeat;
+    padding: 0px 0px 30px 0px;
+  }
   .welCometext {
     float: left;
     text-align: justify;
@@ -482,9 +497,10 @@ export default css`
     padding: 20px 0px 16px 0px;
   }
   .servicecolumn1 {
-    width: 48%;
+    width: 100%;
     float: left;
     margin: 0px 0px 10px 0px;
+    border-bottom: 1px dotted #000;
   }
   .servicecolumn2 {
     width: 48%;
@@ -531,7 +547,7 @@ export default css`
     overflow: hidden;
   }
   .Commentslist {
-    margin-top: 70px;
+    margin-top: 20px;
   }
   .Pricedetail {
     width: 226px;
@@ -547,6 +563,26 @@ export default css`
   }
   .itemHead {
     cursor: pointer;
+  }
+  .ordericon {
+    max-width: 50px;
+    margin: 10px;
+  }
+  .orderText {
+    float: right;
+    margin: 10px;
+    width: 60%;
+  }
+  .dotdot {
+    border-bottom: 1px dotted #000;
+    margin-top: 26px;
+  }
+  .orderNumber {
+    width: 25%;
+    margin-top: 10px;
+  }
+  .sumprice {
+    padding-top: 10px;
   }
   @-moz-document url-prefix() {
     /* Firefox Hack :( */

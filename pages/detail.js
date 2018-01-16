@@ -67,10 +67,16 @@ function DetailPage({ data }) {
         </div>
         {/* end column */}
       </div>
+
       <div className="welCometextBox2">
-        <h2>Review</h2>
-        <div className="Commentslist">
-          <ListReviews comments={comments} />
+        <div className="orderList">
+          <h2>Review</h2>
+        </div>
+        <div className="orderList">
+          <div className="orderZone">
+            <ListReviews comments={comments} />
+            <div className="clear" />
+          </div>
         </div>
       </div>
     </div>
