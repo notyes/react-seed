@@ -584,6 +584,68 @@ export default css`
   .sumprice {
     padding-top: 10px;
   }
+  .sumprice span {
+    float: left;
+    margin: 3px 0px 0px 10px;
+  }
+  .order-btn {
+    float: right;
+    margin-right: 30px;
+  }
+  .order-btn button {
+    width: 40px;
+    height: 20px;
+  }
+  .sumordercolumn1 {
+    width: 100%;
+  }
+  .sumordercolumn1 img {
+    max-width: 70px;
+    float: left;
+  }
+  .sumorderText {
+    float: left;
+    margin: 25px 0px 0px 25px;
+    font-size: 16px;
+    width: 70%;
+  }
+  .sumorderqulity {
+    margin-left: 150px;
+    float: left;
+  }
+  .sumorderprice {
+    margin-left: 160px;
+    float: left;
+  }
+  .headprice {
+    margin-left: 140px;
+  }
+  .headqa {
+    margin-left: 230px;
+  }
+  .spname {
+    float: left;
+    min-width: 150px;
+  }
+  .sumorderTextsum {
+    float: left;
+    margin: 25px 0px 0px 105px;
+    font-size: 16px;
+    width: 70%;
+  }
+  .sum-btn {
+    margin-left: 50px;
+    width: 50px;
+    height: 30px;
+  }
+  .sumorderpricevat {
+    margin-left: 120px;
+    float: left;
+  }
+  .cat-img {
+    max-width: 30px;
+    background: white;
+  }
   @-moz-document url-prefix() {
     /* Firefox Hack :( */
     .star-icon {

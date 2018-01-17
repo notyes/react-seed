@@ -48,6 +48,8 @@ export default function orderUpdater(state = emptyList, action) {
         return val
       }
     })
+  } else if (type == 'CLEAR_ORDER') {
+    return emptyList
   }
   return state
 }

@@ -6,7 +6,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
-
+import { Link } from '../src/routes'
 import Item from '../src/components/itemList'
 
 function ItemOrder({ order, changeOrder }) {
@@ -44,13 +44,18 @@ function SumPrice({ orders }) {
   return (
     <div className="sumprice">
       <span>Sumprice : {sumprice}</span>
+      <div className="order-btn">
+        <Link route="sumorder">
+          <button>Order</button>
+        </Link>
+      </div>
     </div>
   )
 }
 function HomePage({ data, addOrder, orders, changeOrder }) {
   const { MenusList, loading } = data
 
-  if (loading == true) {
+  if (loading == true || MenusList == undefined) {
     return null
   }
   return (
