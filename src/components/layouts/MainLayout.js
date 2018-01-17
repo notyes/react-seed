@@ -5,14 +5,16 @@ import Header from './Header'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-function Layout({ children, data }) {
+function Layout({ children, data, url }) {
+  const { pathname, query: { id } } = url
   const { CategoryList, loading } = data
   if (loading) {
     return null
   }
+
   return (
     <div className="wrapper">
-      <Header categories={CategoryList} />
+      <Header categories={CategoryList} cat_id={id} pathName={pathname} />
       <main>{children}</main>
 
       <style jsx global>
@@ -21,6 +23,13 @@ function Layout({ children, data }) {
     </div>
   )
 }
+
+// class LayoutContainer extends React.Component {
+//   render() {
+//     console.log(this.props)
+//     return <Layout childrens={this.props.children} data={this.props.data} />
+//   }
+// }
 
 const QUERY_POSTS = gql`
   query {

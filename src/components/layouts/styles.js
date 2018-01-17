@@ -27,10 +27,10 @@ export default css`
     height: 35px;
   }
   #logo {
-    width: 201px;
+    width: 190px;
     height: 75px;
 
-    margin-left: 45px;
+    margin-left: 20px;
     float: left;
   }
   .topMenu {
@@ -72,7 +72,7 @@ export default css`
     height: 45px;
     float: right;
     margin: 0px;
-    padding: 30px 20px 0px 0px;
+    padding: 30px 0px 0px 0px;
   }
   #menu2 ul {
     margin: 0px;
@@ -84,12 +84,22 @@ export default css`
     list-style: none;
   }
   #menu2 li a {
+    padding: 10px;
     color: #47608d;
     margin: 0px 20px 0px 0px;
     display: inline;
     font-size: 12px;
     text-decoration: none;
     font-weight: bold;
+  }
+  #menu2 li a.active {
+    color: #fff;
+    margin: 0px 20px 0px 0px;
+    display: inline;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    background: #4564a7;
   }
   #banner {
     width: 904px;
@@ -644,6 +654,7 @@ export default css`
   }
   .cat-img {
     max-width: 30px;
+    max-height: 20px;
     background: white;
   }
   @-moz-document url-prefix() {

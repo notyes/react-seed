@@ -12,7 +12,7 @@ export default WrappedComponent =>
     }
     render() {
       return (
-        <MainLayout>
+        <MainLayout url={this.props.url}>
           <WrappedComponent {...this.props} />
         </MainLayout>
       )
