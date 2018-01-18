@@ -8,6 +8,10 @@ const typeDefs = `
     Category(cat_id : Int) : CategoryType
     MenuDetail(menu_id : Int) : MenuType
   }
+  type Mutation { 
+    addComment(comment: String!, menu_id: Int! ): CommentType
+    addRateing(menu_id : Int! , star: Int! ) : MenuType
+  }
   type CategoryType{
     id : Int
     name : String  
@@ -23,6 +27,12 @@ const typeDefs = `
     rating : RateType
     avgRating : String
     comments : [CommentType]
+    category : ParentCat
+  }
+  type ParentCat{
+    id: Int
+    name: String
+    images: String
   }
   type RateType{
     one : Int
@@ -52,6 +62,12 @@ const resolvers = {
 
       json.menus = json.menus.map(function(item) {
         item.avgRating = avgRating(item.rating)
+        const category = {
+          id: json.id,
+          name: json.name,
+          images: json.images
+        }
+        item.category = category
         return item
       })
       return json
@@ -61,7 +77,6 @@ const resolvers = {
 
       const res = await fetch(url_fetch)
       const json = await res.json()
-
       return json.map(function(item) {
         item.avgRating = avgRating(item.rating)
         return item
@@ -82,23 +97,68 @@ const resolvers = {
 
       return json
     }
+  },
+  Mutation: {
+    addComment: async (_, { comment, menu_id }) => {
+      const res = await fetch('http://localhost:4000/comments/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          menuId: menu_id,
+          body: comment
+        })
+      })
+      const json = await res.json()
+      return json
+    },
+    addRateing: async (_, { menu_id, star }) => {
+      const url_fetch =
+        'http://localhost:4000/menus/' +
+        menu_id +
+        '?_expand=category&_embed=comments'
+      const res = await fetch(url_fetch)
+      const menu = await res.json()
+
+      if (star == 1) {
+        menu.rating.one = menu.rating.one + 1
+      } else if (star == 2) {
+        menu.rating.two = menu.rating.two + 1
+      } else if (star == 3) {
+        menu.rating.three = menu.rating.three + 1
+      } else if (star == 4) {
+        menu.rating.four = menu.rating.four + 1
+      } else if (star == 5) {
+        menu.rating.five = menu.rating.five + 1
+      }
+
+      const resUpdate = await fetch('http://localhost:4000/menus/' + menu_id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(menu)
+      })
+      const jsonUpdate = await resUpdate.json()
+      jsonUpdate.avgRating = avgRating(jsonUpdate.rating)
+      return jsonUpdate
+    }
+    //   addPost: async () => {
+    //     const res = await fetch('http://localhost:4000/posts/', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify({
+    //         title: 'my aweson title',
+    //         body: 'this is message'
+    //       })
+    //     })
+    //     const json = await res.json()
+    //     return json
+    //   }
   }
-  // Mutation: {
-  //   addPost: async () => {
-  //     const res = await fetch('http://localhost:4000/posts/', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         title: 'my aweson title',
-  //         body: 'this is message'
-  //       })
-  //     })
-  //     const json = await res.json()
-  //     return json
-  //   }
-  // }
 }
 
 // function modifyDate(mTime) {

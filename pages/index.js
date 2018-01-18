@@ -6,52 +6,10 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
-import { Link } from '../src/routes'
+
 import Item from '../src/components/itemList'
+import OrderList from '../src/components/orderList'
 
-function ItemOrder({ order, changeOrder }) {
-  const { id, images, orders, name } = order
-  return (
-    <div className="servicecolumn1">
-      <img
-        src={`/static/images/menus/${images}`}
-        alt=""
-        className="ordericon"
-      />
-      <div className="orderText">
-        <span>{name}</span>
-        <br />
-        <input
-          type="number"
-          className="orderNumber"
-          value={orders}
-          onChange={changeOrder(id)}
-        />
-      </div>
-      <div />
-    </div>
-  )
-}
-function SumPrice({ orders }) {
-  let sumprice = 0
-  if (orders.length != 0) {
-    const reducer = (acc, order) => {
-      return acc + parseInt(order.orders) * parseInt(order.price)
-    }
-    sumprice = orders.reduce(reducer, 0)
-  }
-
-  return (
-    <div className="sumprice">
-      <span>Sumprice : {sumprice}</span>
-      <div className="order-btn">
-        <Link route="sumorder">
-          <button>Order</button>
-        </Link>
-      </div>
-    </div>
-  )
-}
 function HomePage({ data, addOrder, orders, changeOrder }) {
   const { MenusList, loading } = data
 
@@ -79,22 +37,7 @@ function HomePage({ data, addOrder, orders, changeOrder }) {
         <div className="orderList">
           <h2>ORDER</h2>
         </div>
-        <div className="orderList">
-          <div className="orderZone">
-            {orders.map(function(order) {
-              return (
-                <ItemOrder
-                  key={order.id}
-                  order={order}
-                  changeOrder={changeOrder}
-                />
-              )
-            })}
-
-            <div className="clear" />
-            <SumPrice orders={orders} />
-          </div>
-        </div>
+        <OrderList orders={orders} changeOrder={changeOrder} />
       </div>
     </div>
   )
@@ -102,7 +45,8 @@ function HomePage({ data, addOrder, orders, changeOrder }) {
 
 class HomePageContainer extends React.Component {
   addOrder = menu_id => () => {
-    const menusList = this.props.data.MenusList
+    // const menusList = this.props.data.MenusList
+    const { MenusList: menusList } = this.props.data
     const menuSelect = menusList.find(function(val) {
       if (val.id == menu_id) {
         return val
@@ -148,6 +92,9 @@ const QUERY_POSTS = gql`
       images
       id
       avgRating
+      category {
+        images
+      }
     }
   }
 `

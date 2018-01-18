@@ -36,6 +36,9 @@ const QUERY_POSTS = gql`
     CategoryList {
       id
       name
+      menus {
+        id
+      }
     }
   }
 `

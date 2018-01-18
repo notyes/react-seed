@@ -4,7 +4,7 @@ import withApolloClient from '../hocs/withApolloClient'
 import withStore from '../hocs/withStore'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
-import { Link } from '../src/routes'
+import { Link, Router } from '../src/routes'
 
 function SumOrderItem({ orders }) {
   if (orders == undefined) return null
@@ -43,7 +43,7 @@ function sumorder({ orders }) {
     sumprice = orders.reduce(reducer, 0)
   }
   return (
-    <div>
+    <div className="sumPageMain">
       <div className="sumordercolumn1">
         <img src={`/static/images/dummy.png`} alt="" className="ordericon" />
         <div className="sumorderText">
@@ -73,11 +73,29 @@ function sumorder({ orders }) {
       <Link route="home">
         <button className="sum-btn">Back</button>
       </Link>
-      <Link route="bill">
-        <button className="sum-btn">Bill</button>
-      </Link>
+
+      <GoBillBtn orders={orders} />
+
+      <div className="clear" />
     </div>
   )
+}
+class GoBillBtn extends React.Component {
+  clickcheckbill = () => {
+    const number_order = this.props.orders.length
+    if (number_order < 1) {
+      alert('Please Select Order')
+    } else {
+      Router.pushRoute('bill')
+    }
+  }
+  render() {
+    return (
+      <button onClick={this.clickcheckbill} className="sum-btn">
+        Bill
+      </button>
+    )
+  }
 }
 
 export default compose(

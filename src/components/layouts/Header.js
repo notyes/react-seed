@@ -4,7 +4,19 @@ import { Link } from '../../../src/routes'
 export default function Header({ categories, cat_id, pathName }) {
   if (categories == undefined) return null
   let active_home = cat_id == undefined ? 'active' : ''
-
+  if (pathName == '/detail') {
+    const categoery_sel = categories.find(function(val) {
+      const cat = val.menus.find(function(menu) {
+        if (menu.id == cat_id) {
+          return menu
+        }
+      })
+      if (cat != undefined) {
+        return val
+      }
+    })
+    cat_id = categoery_sel.id
+  }
   return (
     <div id="header">
       <div id="logo">
@@ -18,8 +30,7 @@ export default function Header({ categories, cat_id, pathName }) {
             </Link>
           </li>
           {categories.map(function(val) {
-            const active_cat =
-              cat_id == val.id && pathName == '/category' ? 'active' : ''
+            const active_cat = cat_id == val.id ? 'active' : ''
             return (
               <li key={val.id}>
                 <Link route="category" params={{ id: val.id }}>

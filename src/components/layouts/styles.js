@@ -622,6 +622,7 @@ export default css`
   .sumorderqulity {
     margin-left: 150px;
     float: left;
+    min-width: 25px;
   }
   .sumorderprice {
     margin-left: 160px;
@@ -631,11 +632,11 @@ export default css`
     margin-left: 140px;
   }
   .headqa {
-    margin-left: 230px;
+    margin-left: 330px;
   }
   .spname {
     float: left;
-    min-width: 150px;
+    min-width: 240px;
   }
   .sumorderTextsum {
     float: left;
@@ -656,6 +657,34 @@ export default css`
     max-width: 30px;
     max-height: 20px;
     background: white;
+  }
+  .imgCatItem {
+    max-width: 30px;
+    position: absolute;
+    left: 180px;
+    top: 180px;
+  }
+  .imgAreaItem {
+    position: relative;
+  }
+  .inputcomment {
+    margin: 40px 0px 0px 10px;
+  }
+  .sumPageMain {
+    background: #eeeff3;
+    padding-bottom: 20px;
+  }
+  .orderZone form {
+    margin-left: 10px;
+  }
+  .rateing-btn {
+    float: left;
+    margin-top: 10px;
+  }
+  .rateing-btn button {
+    width: 40px;
+    height: 20px;
+    margin-left: 5px;
   }
   @-moz-document url-prefix() {
     /* Firefox Hack :( */

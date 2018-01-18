@@ -44,7 +44,7 @@ function Bill({ orders, onSubmitBill }) {
   }
   const price_vat = sumprice * 107 / 100
   return (
-    <div>
+    <div className="sumPageMain">
       <div className="sumordercolumn1">
         <img src={`/static/images/dummy.png`} alt="" className="ordericon" />
         <div className="sumorderText">
@@ -57,6 +57,20 @@ function Bill({ orders, onSubmitBill }) {
       </div>
 
       <SumOrderItem orders={orders} />
+      <div className="sumordercolumn1">
+        <img src={`/static/images/dummy.png`} alt="" className="ordericon" />
+        <div className="sumorderTextsum">
+          <div className="spname">
+            <span className="sumordername" />
+          </div>
+          <div className="sumorderqulity">
+            <span>Total order :</span>
+          </div>
+          <div className="sumorderprice">{orders.length}</div>
+        </div>
+        <div />
+        <div className="clear" />
+      </div>
       <div className="sumordercolumn1">
         <img src={`/static/images/dummy.png`} alt="" className="ordericon" />
         <div className="sumorderTextsum">
