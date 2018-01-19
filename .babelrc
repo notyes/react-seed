@@ -1,0 +1,17 @@
+{
+    "presets": [
+        "stage-1",
+        ["env", {
+            "targets": {
+                "node": "6.10",                
+                "browsers": ["last 2 versions", "safari >= 7"]
+            }
+        }],
+        "react",
+        ["next/babel", "env"]
+    ],
+    "plugins": [
+        "transform-runtime",
+        "transform-class-properties"
+    ]
+}
