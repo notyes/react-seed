@@ -45,7 +45,6 @@ function HomePage({ data, addOrder, orders, changeOrder }) {
 
 class HomePageContainer extends React.Component {
   addOrder = menu_id => () => {
-    // const menusList = this.props.data.MenusList
     const { MenusList: menusList } = this.props.data
     const menuSelect = menusList.find(function(val) {
       if (val.id == menu_id) {
