@@ -8,22 +8,6 @@ import gql from 'graphql-tag'
 import RatingStar from '../src/components/starRating'
 
 class IncreaseStar extends React.Component {
-  // state = {
-  //   star: {
-  //     one: 0,
-  //     two: 0,
-  //     three: 0,
-  //     four: 0,
-  //     five: 0
-  //   }
-  // }
-  // componentWillMount() {
-  //   const { rating } = this.props.MenuDetail
-  //   this.setState({
-  //     star: rating
-  //   })
-  // }
-
   render() {
     return (
       <div className="rateing-btn">
@@ -219,19 +203,15 @@ class DetailPageContainer extends React.Component {
     this.props.client.mutate({
       mutation: MutationComment,
       variables: { comment: comment, menu_id: menu_id },
-      update: (proxy, { data: { addRateing } }) => {
+      update: (proxy, { data: { addComment } }) => {
         const query = QUERY_POSTS
         const data = proxy.readQuery({
           query,
           variables: { menu_id }
         })
-        data.MenuDetail.rating.push(addRateing)
+        data.MenuDetail.comments.push(addComment)
         proxy.writeQuery({ query, data })
       }
-      // optimisticResponse: {
-      //   __typename: 'Mutation',
-      //   addComment: { __typename: 'CommentType', id: -1, body: comment }
-      // }
     })
   }
   updateStar = star => e => {
@@ -239,18 +219,8 @@ class DetailPageContainer extends React.Component {
 
     this.props.client.mutate({
       mutation: MutationRating,
-      variables: { star, menu_id },
-      update: (proxy, { data: { addComment } }) => {}
+      variables: { star, menu_id }
     })
-    // if (star == 1) {
-    //   this.setState({
-    //     star: { ...this.state.star, one: this.state.star.one + 1 }
-    //   })
-    // } else if (star == 2) {
-    //   this.setState({
-    //     star: { ...this.state.star, two: this.state.star.two + 1 }
-    //   })
-    // }
   }
   render() {
     return (
@@ -274,16 +244,4 @@ export default compose(
       }
     })
   })
-  // graphql(MutationComment, {
-  //   options: ({ url: { query: { id } } }) => ({
-  //     refetchQueries: [
-  //       {
-  //         query: QUERY_POSTS,
-  //         variables: {
-  //           menu_id: id
-  //         }
-  //       }
-  //     ]
-  //   })
-  // })
 )(DetailPageContainer)
